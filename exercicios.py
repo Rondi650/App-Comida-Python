@@ -456,6 +456,14 @@ def novo_exercicio_classmetod():
     print(f"Cliente: {cliente1.nome}, Saldo: {conta1.saldo}, Ativa? {conta1.ativo}")
     print(f"Cliente: {cliente2.nome}, Saldo: {conta2.saldo}, Ativa? {conta2.ativo}")
     print(f"Cliente: {cliente3.nome}, Saldo: {conta3.saldo}, Ativa? {conta3.ativo}")
-    print(vars(cliente1.conta))
+
+    conta1.depositar(500)
+    print(f"Cliente: {cliente1.nome}, Saldo: {conta1.saldo}, Ativa? {conta1.ativo}")
+    print()
+    print(vars(conta1))
     print(vars(cliente1))
 
+
+
+
+novo_exercicio_classmetod()  
