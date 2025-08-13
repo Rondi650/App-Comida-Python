@@ -464,6 +464,3 @@ def novo_exercicio_classmetod():
     print(vars(cliente1))
 
 
-
-
-novo_exercicio_classmetod()  
