@@ -304,7 +304,158 @@ def exercicio_classe_completo_conta_bancaria():
 # 3 Adicione um método de classe chamado ativar_conta à classe ContaBancaria que define o atributo ativo como True. Crie uma instância da classe, chame o método de classe e imprima o valor de ativo.
 # 4 Refatore a classe ContaBancaria para utilizar a abordagem "pythonica" na criação de atributos. Utilize propriedades, se necessário.
 # 5 Crie uma instância da classe e imprima o valor da propriedade titular.
+    class ContaBancaria:
+        def __init__(self, titular = '', saldo = 0):
+            self._titular = titular
+            self._saldo = saldo
+            self._ativo = False
+            
+        @property
+        def titular(self):
+            return self._titular
+        
+        @property
+        def saldo(self):
+            return f'R$ {self._saldo:,.2f}'.replace(',', 'X').replace('.', ',').replace('X', '.')
+
+        @property
+        def ativo(self):
+            return self._ativo
+
+        def __str__(self):
+            return f'Seja bem vindo {self.titular}! Seu saldo atual e: {self.saldo}'
+        
+        @classmethod
+        def ativar_conta(cls, conta):
+            conta._ativo = True
+        
+        
+    titular1 = ContaBancaria('Rondi',24500)
+    titular2 = ContaBancaria('Samara',2000)
+    
+    print(titular1)
+    ContaBancaria.ativar_conta(titular2)
+    print(titular2.saldo)
+    ContaBancaria.ativar_conta(titular2)
+    print(titular2.ativo)
+
+    titular3 = ContaBancaria('joao',10000)
+    print(titular3.titular)
+    
+def novo_exercicio_classmetod():
 # 6 Crie uma classe chamada ClienteBanco com um construtor que aceita 5 atributos. Instancie 3 objetos desta classe e atribua valores aos seus atributos através do método construtor.
 # 7 Crie um método de classe para a conta ClienteBanco.
-    class ContaBancaria:
-        pass
+# Classe da conta bancária
+    class ContaBancariaPythonica:
+        def __init__(self, titular, saldo):
+            self._titular = titular
+            self._saldo = saldo
+            self._ativo = False
+
+        @property
+        def titular(self):
+            return self._titular
+
+        @property
+        def saldo(self):
+            # Formata o saldo em reais
+            return f'R$ {self._saldo:,.2f}'.replace(',', 'X').replace('.', ',').replace('X', '.')
+
+        @property
+        def ativo(self):
+            return self._ativo
+
+        def ativar_conta(self):
+            self._ativo = True
+
+        def depositar(self, valor):
+            if valor > 0:
+                self._saldo += valor
+
+        def sacar(self, valor):
+            if 0 < valor <= self._saldo:
+                self._saldo -= valor
+
+
+    # Classe do cliente
+    class ClienteBanco:
+        def __init__(self, nome, idade, endereco, cpf, profissao):
+            self.nome = nome
+            self.idade = idade
+            self.endereco = endereco
+            self.cpf = cpf
+            self.profissao = profissao
+            self.conta = None  # Inicialmente sem conta
+
+        # Método de instância para criar a conta do próprio cliente
+        def criar_conta(self, saldo_inicial):
+            self.conta = ContaBancariaPythonica(self.nome, saldo_inicial)
+            return self.conta
+             
+        '''  
+        Explicação:
+        1 cliente1.nome → "Ana" → atributo do cliente.
+        2 cliente1.conta → referência para a conta do cliente (uma instância de ContaBancariaPythonica).
+        3 cliente1.conta.titular → "Ana" → atributo da conta, recebeu o valor de cliente1.nome quando a conta foi criada.      
+        
+        +-------------------+
+        |    ClienteBanco   |
+        +-------------------+
+        | nome: "Ana"       |
+        | ...               |
+        | conta ------------> +------------------------+
+        +-------------------+ | ContaBancariaPythonica |
+                              +------------------------+
+                              | titular: "Ana"         |
+                              | saldo: 2000            |
+                              | ativo: False           |
+                              +------------------------+
+        
+        ---------------------------//---------------------------------
+        
+        Explicação:
+        1 ClienteBanco é o cliente real, com atributos como nome, idade, cpf, etc.
+        2 ContaBancariaPythonica é a conta bancária, com titular, saldo e ativo.
+        3 O atributo conta do ClienteBanco aponta para uma instância da conta, mas ClienteBanco não é ContaBancariaPythonica.
+        4 Isso é composição: “ClienteBanco tem uma ContaBancariaPythonica”, não herança.
+         
+        +-------------------+
+        |   ClienteBanco    |
+        +-------------------+
+        | nome              |
+        | idade             |
+        | endereco          |
+        | cpf               |
+        | profissao         |
+        | conta ------------> +------------------------+
+        +-------------------+ | ContaBancariaPythonica |
+                              +------------------------+
+                              | _titular               |
+                              | _saldo                 |
+                              | _ativo                 |
+                              +------------------------+
+
+        ''' 
+
+    # Criando clientes
+    cliente1 = ClienteBanco("Ana", 30, "Rua A", "123.456.789-01", "Backend")
+    cliente2 = ClienteBanco("Luiza", 25, "Rua B", "987.654.321-01", "Estudante")
+    cliente3 = ClienteBanco("Vinny Neves", 40, "Rua C", "111.222.333-44", "Frontend")
+
+    # Criando contas para os clientes
+    conta1 = cliente1.criar_conta(2000)
+    conta2 = cliente2.criar_conta(5000)
+    conta3 = cliente3.criar_conta(10000)
+
+    # Ativando contas
+    conta1.ativar_conta()
+    conta2.ativar_conta()
+    
+
+    # Testando
+    print(f"Cliente: {cliente1.nome}, Saldo: {conta1.saldo}, Ativa? {conta1.ativo}")
+    print(f"Cliente: {cliente2.nome}, Saldo: {conta2.saldo}, Ativa? {conta2.ativo}")
+    print(f"Cliente: {cliente3.nome}, Saldo: {conta3.saldo}, Ativa? {conta3.ativo}")
+    print(vars(cliente1.conta))
+    print(vars(cliente1))
+
