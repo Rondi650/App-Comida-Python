@@ -16,6 +16,11 @@ restaurante_praca.receber_avaliacao('Samara',5)
 bebida_suco = Bebida('Suco de Melancia',5.0,'Grande')
 prato_paozinho = Prato('Paozinho',2.0,'O melhor pao da cidade')
 
+# aplicar desconto
+bebida_suco.aplicar_desconto()
+prato_paozinho.aplicar_desconto()
+
+# adicionado itens ao cardapio
 restaurante_praca.adicionar_no_cardapio(bebida_suco)
 restaurante_praca.adicionar_no_cardapio(prato_paozinho)
 
