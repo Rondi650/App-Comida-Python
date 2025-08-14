@@ -16,14 +16,12 @@ restaurante_praca.receber_avaliacao('Samara',5)
 bebida_suco = Bebida('Suco de Melancia',5.0,'Grande')
 prato_paozinho = Prato('Paozinho',2.0,'O melhor pao da cidade')
 
-
-
-
+restaurante_praca.adicionar_no_cardapio(bebida_suco)
+restaurante_praca.adicionar_no_cardapio(prato_paozinho)
 
 def main():
     Restaurante.listar_restaurantes()
-    print(bebida_suco)
-    print(prato_paozinho)
+    restaurante_praca.exibir_cardapio
 
 if __name__ == '__main__':
     main()
