@@ -12,12 +12,16 @@ class Livro:
 
 # Na classe Livro, adicione um método especial str que retorna uma mensagem formatada com o título, autor e ano de publicação do livro.     
     def __str__(self):
-        return f'{self._titulo} por {self._autor}, ano {self._ano_publicacao}'
+        return f'{self._titulo} por {self._autor}, ano {self._ano_publicacao}, status: {self.ativo}'
+    
+    @property
+    def ativo(self):
+        return f'Disponivel' if self._disponivel else 'Nao disponivel'
     
 # Adicione um método de instância chamado emprestar à classe Livro que define o atributo disponivel como False.    
     def emprestar(self):
-        self._disponivel = not self._disponivel
-        return f'Disponivel' if self._disponivel else 'Nao disponivel'
+        self._disponivel = False
+        
         
 # Adicione um método estático chamado verificar_disponibilidade à classe Livro que recebe um ano como parâmetro e retorna uma lista dos livros disponíveis publicados nesse ano.  
     @staticmethod
