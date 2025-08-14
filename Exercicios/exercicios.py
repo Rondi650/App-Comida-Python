@@ -462,5 +462,3 @@ def novo_exercicio_classmetod():
     print()
     print(vars(conta1))
     print(vars(cliente1))
-
-
