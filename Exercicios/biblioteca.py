@@ -17,6 +17,8 @@ livro3 = Livro("Clean Code", "Robert C. Martin", 2003)
 print(livro3.emprestar())
 
 # No arquivo biblioteca.py, utilize o método estático verificar_disponibilidade para obter a lista de livros disponíveis publicados em um ano específico. 
+livro4 = Livro("O Senhor dos Anéis", "J.R.R. Tolkien", 1935)
+
 print(Livro.verificar_disponibilidade(1935))
 
 

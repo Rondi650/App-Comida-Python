@@ -22,5 +22,16 @@ class Livro:
 # Adicione um método estático chamado verificar_disponibilidade à classe Livro que recebe um ano como parâmetro e retorna uma lista dos livros disponíveis publicados nesse ano.  
     @staticmethod
     def verificar_disponibilidade(ano):
-        livros_disponiveis = [str(livro) for livro in Livro.livros if livro._ano_publicacao == ano and livro._disponivel]
+        livros_disponiveis = [str(livro) for livro in Livro.livros if livro._ano_publicacao == ano and livro._disponivel] # <-- LIST COMPREHENSION
         return "\n".join(livros_disponiveis)
+    
+    '''
+    ESSE FOR E O MODO TRADICIONAL DO LIST COMPREHENSION:
+    
+    resultado = []
+    for livro in Livro.livros:
+        if livro._ano_publicacao == ano and livro._disponivel:
+            resultado.append(livro)
+    return resultado
+    
+    '''
