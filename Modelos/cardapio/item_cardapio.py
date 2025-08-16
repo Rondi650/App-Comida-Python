@@ -8,3 +8,7 @@ class ItemCardapio(ABC):
     @abstractmethod
     def aplicar_desconto(self):
         pass
+    
+    @abstractmethod
+    def formatar_para_cardapio(self) -> str:
+        pass    

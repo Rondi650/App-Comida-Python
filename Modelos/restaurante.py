@@ -17,7 +17,10 @@ class Restaurante:
     
     @classmethod
     def listar_restaurantes(cls):
-        print(f'{"Nome do restaurante".ljust(25)} | {"Categoria".ljust(25)} | {"Avaliação".ljust(25)} | {"Status"}')
+        nome = f'{"Nome do restaurante".ljust(25)} | {"Categoria".ljust(25)} | {"Avaliação".ljust(25)} | {"Status"}'
+        print(nome)
+        subtitulo = f'-' * len(nome) 
+        print(subtitulo)
         for restaurante in cls.restaurantes:
             print(f'{restaurante._nome.ljust(25)} | {restaurante._categoria.ljust(25)} | {str(restaurante.media_avaliacoes).ljust(25)} | {restaurante.ativo}')
 
@@ -41,20 +44,12 @@ class Restaurante:
         quantidade_de_notas = len(self._avaliacao)
         media = round(soma_das_notas / quantidade_de_notas, 1)
         return media
-    
-    # Resumo em uma frase: adicionar_no_cardapio só coloca o objeto na lista da instância; o for só executa quando você chama exibir_cardapio naquela mesma instância — aí `self` refere-se a essa instância e o loop usa self._cardapio para mostrar exatamente
-    
+        
     def adicionar_no_cardapio(self,item):
         if isinstance(item, ItemCardapio):
             self._cardapio.append(item)
-      
-    @property
+    
     def exibir_cardapio(self):
-        print(f'Cardapio do restaurante | {self._nome}\n')
+        print(f'\nCardapio do restaurante: {self._nome}\n')
         for i, item in enumerate(self._cardapio, start=1):
-            if hasattr(item,'descricao'):
-                mensagem_prato = f'{i}. Nome: {item._nome} | Preço: R${item._preco} | Descrição: {item.descricao}'
-                print(mensagem_prato)
-            else:
-                mensagem_bebida = f'{i}. Nome: {item._nome} | Preço: R${item._preco} | Tamanho: {item.tamanho}'
-                print(mensagem_bebida)
+            print(f'{i}. {item.formatar_para_cardapio()}')

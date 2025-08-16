@@ -10,3 +10,6 @@ class Prato(ItemCardapio):
     
     def aplicar_desconto(self):
         self._preco -= (self._preco * 0.08)
+        
+    def formatar_para_cardapio(self) -> str:
+        return f'Nome: {self._nome} | Preço: R${self._preco} | Descrição: {self.descricao}'

@@ -26,7 +26,7 @@ restaurante_praca.adicionar_no_cardapio(prato_paozinho)
 
 def main():
     Restaurante.listar_restaurantes()
-    restaurante_praca.exibir_cardapio
+    restaurante_praca.exibir_cardapio()
 
 if __name__ == '__main__':
     main()
