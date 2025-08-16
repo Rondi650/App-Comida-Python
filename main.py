@@ -36,3 +36,8 @@ def get_restaurantes(restaurante: str = Query(None)):
         return {'Restaurante':restaurante,'Cardapio':dados_restaurante}
     else: 
         return {'Erro':f'{response.status_code} - {response.text}'}
+    
+    
+    if __name__ == "__main__":
+        import uvicorn
+        uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
