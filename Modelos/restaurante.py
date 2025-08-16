@@ -12,9 +12,6 @@ class Restaurante:
         self._cardapio = []
         Restaurante.restaurantes.append(self)
     
-    def __str__(self):
-        return f'{self._nome} | {self._categoria}'
-    
     @classmethod
     def listar_restaurantes(cls):
         nome = f'{"Nome do restaurante".ljust(25)} | {"Categoria".ljust(25)} | {"Avaliação".ljust(25)} | {"Status"}'
