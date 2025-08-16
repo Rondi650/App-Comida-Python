@@ -47,6 +47,6 @@ class Restaurante:
             self._cardapio.append(item)
     
     def exibir_cardapio(self):
-        print(f'\nCardapio do restaurante: {self._nome}\n')
+        print(f'\nCardapio do restaurante: {self._nome}')
         for i, item in enumerate(self._cardapio, start=1):
             print(f'{i}. {item.formatar_para_cardapio()}')
